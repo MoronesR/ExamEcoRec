@@ -6,7 +6,7 @@ const ModalBrand = props => {
   return (
     <Modal
     animationType="slide"
-    transparent={false}
+    transparent={true}
     visible={props.visible}
   >
     <View style={style.backModal}>  
@@ -35,7 +35,8 @@ const style = StyleSheet.create({
     backgroundColor:'#fff',
     margin:20,
     padding: 20,
-    marginTop:200
+    marginTop:200,
+    borderRadius:10
   },
   button:{
     marginTop:20

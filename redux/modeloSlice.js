@@ -12,19 +12,27 @@ export const modeloSlice =createSlice({
       },
       {
         identificador: 2,
-        descripcion: "Versa",
-        cilindros: 4,
-        modelo: 2014,
+        descripcion: "Xterra",
+        cilindros: 6,
+        modelo: 2002,
         puertas: 4,
         marca: 2
       },
       {
         identificador: 3,
-        descripcion: "Fusion",
+        descripcion: "Camaro",
+        cilindros: 8,
+        modelo: 2008,
+        puertas: 2,
+        marca: 3
+      },
+      {
+        identificador: 4,
+        descripcion: "Camry",
         cilindros: 4,
-        modelo: 2002,
+        modelo: 2000,
         puertas: 4,
-        marca: 1
+        marca: 4
       }],
     reducers:{
         addModel: (state, action) => {
