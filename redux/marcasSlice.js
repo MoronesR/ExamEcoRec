@@ -31,10 +31,14 @@ export const marcaSlice =createSlice({
             if(foundMarca){
                 foundMarca.descripcion = descripcion;
             }
+        },
+        removeMarca: (state, action) => {
+            const id = action.payload;
+            return state.filter(marca => marca.identificador !== id);
         }
     }
 });
 
-export const { addMarca, editMarca } = marcaSlice.actions;
+export const { addMarca, editMarca, removeMarca } = marcaSlice.actions;
 
 export default marcaSlice.reducer;

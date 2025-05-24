@@ -2,7 +2,7 @@ import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React, {useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Form from '../components/form'
-import {addMarca, editMarca} from '../../redux/marcasSlice'
+import {addMarca, editMarca, removeMarca} from '../../redux/marcasSlice'
 import Selects from './selects'
 
 const inputs = [
@@ -33,8 +33,13 @@ const tabsBrands = props => {
       let newBrand = {
         identificador: selectEdit,
         descripcion: data.Descripcion,
-      } 
+      }
       disparch(editMarca(newBrand));
+      props.closeModal(false);
+    };
+
+    const handleDelete = () =>{
+      disparch(removeMarca(selectEdit));
       props.closeModal(false);
     };
 
@@ -49,7 +54,10 @@ const tabsBrands = props => {
             <Text>Agregar</Text>
           </Pressable>
           <Pressable onPress={() => setCurrentTab(1)}>
-            <Text> Editar </Text>
+            <Text>Editar</Text>
+          </Pressable>
+          <Pressable onPress={() => setCurrentTab(2)}>
+            <Text>Eliminar</Text>
           </Pressable>
         </View>
         {currentTab === 0 && (
@@ -59,8 +67,16 @@ const tabsBrands = props => {
         )}
         {currentTab === 1 && (
           <View>
-            <Selects getData = {selected} modelVisible={false}/>    
+            <Selects getData={selected} modelVisible={false}/>
             <Form inputs={inputs} handle={onSubmitEdit}/>
+          </View>
+        )}
+        {currentTab === 2 && (
+          <View>
+            <Selects getData={selected} modelVisible={false}/>
+            <Pressable style={tab.deleteBtn} onPress={handleDelete}>
+              <Text>Eliminar Marca</Text>
+            </Pressable>
           </View>
         )}
       </View>
@@ -75,6 +91,13 @@ const tab = StyleSheet.create({
     padding:15,borderRadius:5,
     marginBottom:20
   },
+  deleteBtn:{
+    backgroundColor:'#fcc',
+    padding:10,
+    alignItems:'center',
+    borderRadius:5,
+    marginTop:10
+  }
 })
 
 export default tabsBrands
